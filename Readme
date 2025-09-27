@@ -1,0 +1,179 @@
+🚢 Titanic Survival Prediction
+
+
+Overview
+
+This project implements a complete machine learning pipeline to predict Titanic survival. It automatically handles:
+
+Data preprocessing & feature engineering
+
+Hyperparameter tuning for Random Forest & XGBoost
+
+Model training for Random Forest, XGBoost, Logistic Regression, and Neural Network
+
+Validation evaluation with accuracy, ROC, Precision-Recall, confusion matrix, and learning curves
+
+Automatic best model selection based on validation AUC
+
+Test set predictions and submission file creation
+
+The notebook is fully automated and ready for Kaggle submission.
+
+Dataset
+
+Kaggle Titanic Dataset: Link
+
+train.csv: Training data with labels
+
+test.csv: Test data without labels
+
+Features Used
+
+Feature	Description
+Pclass	Passenger class (1, 2, 3)
+Sex	Gender
+Age	Age in years
+SibSp	Number of siblings/spouses aboard
+Parch	Number of parents/children aboard
+Fare	Ticket fare
+Embarked	Port of embarkation (C = Cherbourg, Q = Queenstown, S = Southampton)
+Pipeline
+1. Data Preprocessing
+
+Missing values handled:
+
+Age: median
+
+Fare: median (test set)
+
+Embarked: mode
+
+Encode categorical features (Sex, Embarked) with LabelEncoder
+
+2. Feature Selection
+
+Selected features for all models:
+
+['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked']
+
+3. Train/Validation Split
+
+80% training, 20% validation
+
+4. Hyperparameter Tuning
+
+Random Forest:
+
+n_estimators: [50, 100, 200]
+
+max_depth: [None, 5, 10]
+
+min_samples_split: [2, 5]
+
+min_samples_leaf: [1, 2]
+
+XGBoost:
+
+n_estimators: [50, 100, 200]
+
+max_depth: [3, 5, 7]
+
+learning_rate: [0.01, 0.1, 0.2]
+
+subsample: [0.8, 1.0]
+
+5. Models
+
+Random Forest (tuned)
+
+XGBoost (tuned)
+
+Logistic Regression (baseline)
+
+Neural Network (MLPClassifier, 2 hidden layers (50,50))
+
+Evaluation Metrics
+
+Accuracy: Overall correctness
+
+Confusion Matrix: True/False positives & negatives
+
+Classification Report: Precision, Recall, F1-score
+
+ROC Curve & AUC: Discriminative ability
+
+Precision-Recall Curve & AP: Performance on imbalanced data
+
+Learning Curve: Training vs validation accuracy
+
+Example Plots
+
+Confusion Matrix:
+
+
+ROC Curve:
+
+
+Precision-Recall Curve:
+
+
+Learning Curve:
+
+
+Replace images/ folder with actual plot images from your notebook.
+
+Best Model Selection
+
+Automatically selects the model with the highest validation AUC
+
+Used to predict the test dataset
+
+Submission
+
+Generates submission.csv file ready for Kaggle submission:
+
+PassengerId,Survived
+892,0
+893,1
+...
+
+
+Download directly from Colab using:
+
+from google.colab import files
+files.download("submission.csv")
+
+Libraries Used
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+xgboost
+google.colab
+
+
+Make sure to upgrade XGBoost to avoid compatibility issues:
+pip install --upgrade xgboost
+
+Usage Instructions
+
+Upload train.csv and test.csv to Colab
+
+Run all cells sequentially
+
+Notebook will:
+
+Preprocess data
+
+Tune hyperparameters for RF & XGBoost
+
+Train all models
+
+Evaluate and visualize results
+
+Select best model automatically
+
+Generate test predictions and submission.csv
+
+Download submission.csv and submit to Kaggle
